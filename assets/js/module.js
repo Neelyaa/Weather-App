@@ -27,7 +27,10 @@ export const monthNames = [
 
 export const getDate = function (dateUnix, timezone) {
     const date = new Date((dateUnix + timezone) * 1000);
-    const weekDayName = weekDayNames[date.getUTCDay()];
+
+    const adjustedDay = (date.getUTCDay() + 6) % 7; 
+
+    const weekDayName = weekDayNames[adjustedDay];
     const monthName = monthNames[date.getUTCMonth()];
 
     return `${weekDayName} ${date.getUTCDate()} ${monthName}`;
